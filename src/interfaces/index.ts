@@ -5,5 +5,6 @@ export interface ProductType {
     description:string;
     category: string;
     image:string;
+    qunatity:number
     rating: {rate:number; count:number  }
 }

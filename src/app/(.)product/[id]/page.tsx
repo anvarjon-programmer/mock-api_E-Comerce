@@ -8,6 +8,8 @@ import CustomImage from "@/components/image"
 import {  StarIcon as StarIconOutline }  from "@heroicons/react/24/outline"
 import { StarIcon } from "@heroicons/react/24/solid"
 import ReactStars from 'react-stars'
+import { json } from "stream/consumers"
+import { toast } from 'react-toastify';
 
 const ProductDetailsPage = () => {
 
@@ -18,6 +20,28 @@ const ProductDetailsPage = () => {
 
   const {id} = useParams();
   const router = useRouter()
+
+  const handleClick =() =>{
+    const products: ProductType[] = JSON.parse((localStorage.getItem('carts') as string)) || []
+    const isExistProduct = products.find(c => c.id === product?.id)
+    if(isExistProduct){
+      const updateData = products.map(c =>{
+        if(c.id === product?.id){
+          return{
+            ...c,
+          qunatity: c.qunatity + 1
+          }
+        }
+        return c
+      })
+      localStorage.setItem('carts',JSON.stringify(updateData))
+
+    }else{
+      const data = [...products,{...product, qunatity: 1}]
+      localStorage.setItem('carts',JSON.stringify(data))
+    }
+    toast("product added to your bag!!")
+  }
 
   
 
@@ -62,7 +86,7 @@ const ProductDetailsPage = () => {
                             {Array.from({length: 5 - Math.floor(product.rating.rate)}, (_,i) => (
                               <StarIconOutline key={i} className="h-4 w-4 text-yellow-500"/>
                         ))}  */}
-                        <ReactStars value={product.rating.rate} edit={false}/>
+                        <ReactStars value={product.rating.rate} edit={true}/>
                           </div>
                         )}
                         <p className="text-blue-600 hover:underline cursor-pointer text-xs">
@@ -74,7 +98,8 @@ const ProductDetailsPage = () => {
                       </p>
                     </div>
                     <div className="space-y-3 text-sm">
-                    <button className="button w-full  bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent hover:text-black">
+                    <button className="button w-full  bg-blue-600 text-white border-transparent
+                     hover:border-blue-600 hover:bg-transparent hover:text-black" onClick={handleClick}>
                       Add to bag
                     </button>
                     <button

@@ -10,18 +10,15 @@ const Navbar = () => {
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
           <Link href={'/'} className="mr-5 hover:text-gray-900 cursor-pointer">Home Page</Link>
           <Link href={"/products"} className="mr-5 hover:text-gray-900 cursor-pointer">All products</Link>
+
         </nav>
+        <Link href={"/shopping-cart"}>
           <button className="button bg-blue-600 text-white border-transparent hover:border-blue-600 hover:bg-transparent  hover:text-black   
             px-5 md:px-10 py-2.5 rounded font-semibold transition duration-200 ease-out 
           ">
-            Login in
+            My Bug
           </button>
-          <button className="button bg-transparent border-blue-600 text-black hover:border-transparent hover:bg-blue-600 hover:bg-transparent   
-            hover:text-white
-            px-5 md:px-10 py-2.5 rounded font-semibold transition duration-200 ease-out 
-            ">
-            Sign up
-          </button>
+        </Link>
         </div>
     </header>
   )
