@@ -17,7 +17,9 @@ const ShoppingCart = () => {
     JSON.parse(localStorage.getItem("carts") as string) || []
     )
   const removeProduct =(id: number) =>{
-    const updateCart = products.filter(product => product.id === id);
+    const updateCart = products.filter(product => product.id !== id);
+    
+    
     localStorage.setItem("carts",JSON.stringify(updateCart))
     setProducts(updateCart)
   }
