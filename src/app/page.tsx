@@ -12,9 +12,9 @@ export default async function Home() {
     <section className="flex flex-col space-y-12">
       <h1 className="text-5xl font-bold text-center">AS SHOP DEALS</h1>
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {
+      {
           products.map(product =>(
-            <Product key={product.id} product={product}/>
+            <h1 key={product.id}>{product.id}</h1> // Har bir elementga unikal key berish
           ))
         }
       </div>
